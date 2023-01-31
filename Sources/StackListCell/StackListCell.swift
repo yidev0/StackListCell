@@ -13,12 +13,7 @@ struct StackListCell<Icon: View, Title: View, Detail: View>: View {
         case horizontal, vertical
     }
     
-    enum SLIconStyle {
-        case icon, filled
-    }
-    
     var stackStyle: SLStackStyle
-    var iconStyle: SLIconStyle
     
     var title: Title
     var detail: Detail?
@@ -26,13 +21,11 @@ struct StackListCell<Icon: View, Title: View, Detail: View>: View {
     
     init(
         _ stackStyle: SLStackStyle = .horizontal,
-        iconStyle: SLIconStyle = .filled,
         @ViewBuilder title: () -> Title,
         @ViewBuilder detail: () -> Detail,
         @ViewBuilder image: () -> Icon
     ) {
         self.stackStyle = stackStyle
-        self.iconStyle = iconStyle
         self.image = image()
         self.title = title()
         self.detail = detail()
@@ -99,13 +92,11 @@ struct StackListCell<Icon: View, Title: View, Detail: View>: View {
 extension StackListCell where Icon == Image, Title == Text, Detail == Text {
     init(
         _ stackStyle: SLStackStyle = .horizontal,
-        iconStyle: SLIconStyle = .filled,
         title: LocalizedStringKey,
         detail: LocalizedStringKey? = nil,
         systemImage: String
     ) {
         self.stackStyle = stackStyle
-        self.iconStyle = iconStyle
         self.image = Image(systemName: systemImage)
         self.title = Text(title)
         if let detail = detail {
@@ -115,13 +106,11 @@ extension StackListCell where Icon == Image, Title == Text, Detail == Text {
     
     init(
         _ stackStyle: SLStackStyle = .horizontal,
-        iconStyle: SLIconStyle = .filled,
         title: LocalizedStringKey,
         detail: LocalizedStringKey? = nil,
         imageName: String
     ) {
         self.stackStyle = stackStyle
-        self.iconStyle = iconStyle
         self.image = Image(imageName)
         self.title = Text(title)
         if let detail = detail {

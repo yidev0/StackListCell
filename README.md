@@ -1,3 +1,6 @@
 # StackListCell
 
-A description of this package.
+Create cells designed similarly to the Settings app.
+
+## Usage
+
